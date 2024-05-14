@@ -11,8 +11,7 @@ export function Blog() {
 	}
 	return (
 		<div>
-			{/* <FullBlog blog={blog} /> */}
-      <BlogSkeleton/>
+			<FullBlog blog={blog} />
 		</div>
 	);
 }
