@@ -6,10 +6,26 @@ export const FullBlog = ({blog}: {blog: Blog}) => {
 	return (
 		<div>
 			<Appbar />
-			<div className="grid grid-cols-12 p-20 gap-2">
-				<div className="col-span-8 ">
-					<div className=" font-extrabold text-5xl">
+			<div className="grid grid-cols-12 p-5 md:p-20 gap-2">
+				<div className=" col-span-12 md:col-span-8 ">
+					<div className=" font-extrabold text-3xl md:text-5xl">
 						{blog.title}
+					</div>
+					<div className="block md:hidden mt-4">
+						
+						<div className="flex items-center gap-5 py-2">
+							<div>
+								<Avatar name={blog.author.name} size="big" />
+							</div>
+							<div>
+								<div className=" text-xl font-bold text-gray-800">
+									{blog.author.name || "Anonymous"}
+								</div>
+								<div className=" text-md font-medium text-gray-500">
+									{blog.author.email}
+								</div>
+							</div>
+						</div>
 					</div>
 					<div className="text-xl  text-gray-400 pt-3">
 						Posted on Apr 14, 2024
@@ -18,7 +34,7 @@ export const FullBlog = ({blog}: {blog: Blog}) => {
 						{blog.content}
 					</div>
 				</div>
-				<div className="col-span-4">
+				<div className="col-span-4 hidden md:block">
 					<div className="font-medium text-gray-800 text-xl">
 						Author
 					</div>
