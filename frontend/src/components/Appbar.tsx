@@ -3,7 +3,7 @@ import { Avatar } from "./BlogCard"
 
 export const Appbar = () => {
   return (
-		<div className="border-b flex justify-between items-center px-10 py-2">
+		<div className="border-b flex justify-between items-center px-4 md:px-10 py-2">
 			<Link to={"/blogs"}>
 				<div className="font-bold  tracking-wide text-xl cursor-pointer">
 					<img src="/medium-wordmark-dark-100px.png" alt="Medium" className=" h-12"/>
