@@ -21,11 +21,11 @@ export const BlogCard = ({
 }: BlogCardProps) => {
 
   const quillContent = getPlainTextFromHTML(content).split(" ").slice(0, 40).join(" ") + "...";
-  
+
 	return (
 		<Link to={`/blog/${id}`} className="blog-card">
-			<div className=" p-5">
-				<div className="border-b border-gray-200 pb-8">
+			<div className=" px-4 py-8 border-b border-gray-200">
+				<div> 
 					<div className="flex ">
 						<div>
 							<Avatar name={authorName} />
@@ -48,7 +48,7 @@ export const BlogCard = ({
 							theme={"bubble"}
 						/>
 					</div>
-					<div className="text-sm text-slate-500 pt-8">
+					<div className="text-sm text-slate-500 pt-5">
 						{`${Math.ceil(content.length / 600)} min read`}
 					</div>
 				</div>

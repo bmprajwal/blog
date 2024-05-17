@@ -31,4 +31,5 @@ body {
 .blog-card .ql-editor h3
 {
     @apply text-sm
+    leading-tight
 }
