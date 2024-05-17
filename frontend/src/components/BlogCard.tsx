@@ -1,4 +1,8 @@
 import { Link } from "react-router-dom";
+import ReactQuill from "react-quill";
+
+import "react-quill/dist/quill.bubble.css";
+import { getPlainTextFromHTML } from "../utils/string";
 
 export interface BlogCardProps {
 	authorName: string;
@@ -7,6 +11,7 @@ export interface BlogCardProps {
 	publishedDate: string;
 	id: string;
 }
+
 export const BlogCard = ({
 	id,
 	authorName,
@@ -14,9 +19,12 @@ export const BlogCard = ({
 	content,
 	publishedDate,
 }: BlogCardProps) => {
+
+  const quillContent = getPlainTextFromHTML(content).split(" ").slice(0, 40).join(" ") + "...";
+  
 	return (
-		<Link to={`/blog/${id}`}>
-			<div className=" p-6">
+		<Link to={`/blog/${id}`} className="blog-card">
+			<div className=" p-5">
 				<div className="border-b border-gray-200 pb-8">
 					<div className="flex ">
 						<div>
@@ -34,7 +42,11 @@ export const BlogCard = ({
 					</div>
 					<div className="text-2xl font-bold pt-2">{title}</div>
 					<div className="pt-2 text-slate-700">
-						{content.slice(0, 200) + "..."}
+						<ReactQuill
+							value={quillContent}
+							readOnly={true}
+							theme={"bubble"}
+						/>
 					</div>
 					<div className="text-sm text-slate-500 pt-8">
 						{`${Math.ceil(content.length / 600)} min read`}
