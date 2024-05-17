@@ -23,10 +23,10 @@ function BlogSkeleton() {
 			<div className="grid grid-cols-12 p-8 md:p-20">
 				<div className=" col-span-12 md:col-span-8">
 					<header className=" md:p-2 md:py-8">
-						<div className="max-w-4xl  md:px-4">
+						<div className="max-w-4xl ">
 							<div className="animate-pulse flex items-center space-x-4">
 								<div>
-									<div className="h-6 w-72 md:w-[50rem] bg-gray-400 rounded"></div>
+									<div className="h-6 w-72 md:w-96 bg-gray-400 rounded"></div>
 									<div className="h-4 w-16 bg-gray-400 rounded mt-2"></div>
 								</div>
 							</div>

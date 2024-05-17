@@ -1,3 +1,34 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wdth,wght@0,62.5..100,100..900;1,62.5..100,100..900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+.ql-editor{
+    @apply text-lg p-0 md:p-4
+}
+
+body {
+    font-family: "Noto Sans", sans-serif;;
+}
+
+.quill {
+    min-height: 300px;
+}
+
+.blog-card .quill {
+    min-height: 50px;
+}
+
+.blog-card .ql-editor {
+    padding: 0;
+}
+
+.blog-card .ql-editor p,
+.blog-card .ql-editor h1,
+.blog-card .ql-editor h2,
+.blog-card .ql-editor h3
+{
+    @apply text-sm
+}
