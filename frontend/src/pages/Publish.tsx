@@ -9,8 +9,10 @@ import "react-quill/dist/quill.snow.css";
 export const Publish = () => {
   const [title, setTitle] = useState("")
   const [content, setContent] = useState("")
+  const [loading, setLoading] = useState(false)
   const navigate = useNavigate()
   async function publishBlog() {
+    setLoading(true)
     const response = await axios.post(
 		`${BACKEND_URL}/api/v1/blog`,
 		{
@@ -34,7 +36,7 @@ export const Publish = () => {
 		<div>
 			<Appbar />
 			<div className="flex justify-center pt-12">
-				<div className="max-w-screen-lg w-full">
+				<div className="publish-page max-w-screen-lg w-full">
 					<input
 						onChange={(e) => setTitle(e.target.value)}
 						type="text"
@@ -52,9 +54,9 @@ export const Publish = () => {
 					<button
 						onClick={publishBlog}
 						type="button"
-						className=" m-8 text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg  px-5 py-2"
+						className=" m-8 text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg  px-5 py-2"
 					>
-						Publish
+						{loading? "Publishing...": "Publish"}
 					</button>
 				</div>
 			</div>
