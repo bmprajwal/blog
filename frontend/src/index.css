@@ -6,7 +6,7 @@
 
 
 .ql-editor{
-    @apply text-lg p-0 md:p-4
+    @apply text-lg p-4
 }
 
 body {
@@ -34,5 +34,10 @@ body {
 }
 
 .ql-editor h1 {
-  line-height: 1.2;
+  @apply leading-none
+}
+
+.publish-page .ql-container {
+  overflow-y: auto; 
+  max-height: 350px; 
 }
