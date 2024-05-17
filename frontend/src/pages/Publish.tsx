@@ -43,7 +43,7 @@ export const Publish = () => {
 						placeholder="Title"
 					></input>
 					<ReactQuill
-            className=" my-5"
+            className=" p-5"
 						theme="snow"
 						value={content}
 						onChange={setContent}
@@ -52,7 +52,7 @@ export const Publish = () => {
 					<button
 						onClick={publishBlog}
 						type="button"
-						className=" mt-8 ml-5 text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg  px-5 py-2"
+						className=" m-8 text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg  px-5 py-2"
 					>
 						Publish
 					</button>
