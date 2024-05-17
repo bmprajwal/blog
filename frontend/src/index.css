@@ -31,5 +31,8 @@ body {
 .blog-card .ql-editor h3
 {
     @apply text-sm
-    leading-tight
+}
+
+.ql-editor h1 {
+  line-height: 1.2;
 }

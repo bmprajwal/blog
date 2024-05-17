@@ -9,8 +9,8 @@ export const FullBlog = ({blog}: {blog: Blog}) => {
 		<div>
 			<Appbar />
 			<div className="grid grid-cols-12 p-5 md:p-20 gap-2">
-				<div className=" col-span-12 md:col-span-8 px-8">
-					<div className=" font-extrabold text-3xl md:text-5xl">
+				<div className=" col-span-12 md:col-span-8">
+					<div className=" font-extrabold text-3xl md:text-5xl text-gray-800">
 						{blog.title}
 					</div>
 					<div className="block md:hidden mt-4">
@@ -31,11 +31,14 @@ export const FullBlog = ({blog}: {blog: Blog}) => {
 					<div className="text-xl  text-gray-400 pt-3">
 						Posted on Apr 14, 2024
 					</div>
+          <div className=" text-gray-700 pt-6">
+
 						<ReactQuill
 							value={blog.content}
 							readOnly={true}
 							theme={"bubble"}
 						/>
+          </div>
 				</div>
 				<div className="col-span-4 hidden md:block">
 					<div className="font-medium text-gray-800 text-xl">
