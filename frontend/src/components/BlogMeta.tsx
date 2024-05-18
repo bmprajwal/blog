@@ -14,15 +14,15 @@ export const BlogMeta = ({authorName, publishedDate, content, type}:BlogMetaProp
 					<Avatar name={authorName} size="big" />
 				</div>
 				<div>
-					<div className="text-gray-900 font-semibold px-2 text-sm">
+					<div className= "author text-gray-900  px-2 text-base">
 						{authorName}
 					</div>
-					<div className="pl-2  text-gray-500 text-xs">
+					<div className="pl-2  text-gray-800 text-xs font-normal">
 						{publishedDate}
 					</div>
 				</div>
 			</div>
-			<div className="text-sm text-slate-500 ">
+			<div className="text-xs text-slate-500 ">
 				{`${Math.ceil(content.length / 600)} min read`}
 			</div>
 		</div>

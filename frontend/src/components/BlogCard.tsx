@@ -25,7 +25,7 @@ export const BlogCard = ({
 
 	return (
 		<Link to={`/blog/${id}`} className="blog-card">
-			<div className=" px-4 py-8 border my-5 rounded-lg border-gray-200">
+			<div className=" px-4 py-4 md:py-8 border my-5 rounded-lg border-gray-200 mx-2">
 				<div>
 					<BlogMeta type="card" authorName={authorName} publishedDate={publishedDate} content={content}/>
 					<div className="text-2xl font-bold pt-2 title">
