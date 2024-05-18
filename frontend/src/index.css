@@ -52,3 +52,7 @@ body {
   font-family: var(--font-cormorant-garamond);
   font-weight: 900;
 }
+
+.author {
+  font-family: var(--font-judson);
+}
