@@ -3,13 +3,13 @@ import { PrismaClient } from "@prisma/client/edge";
 import { withAccelerate } from "@prisma/extension-accelerate";
 import { verify } from "hono/jwt";
 import {
-	createBlogInput,
+  createBlogInput,
 	updateBlogInput,
 } from "@bmprajwal/medium-common";
 
 export const blogRouter = new Hono<{
-	Bindings: {
-		DATABASE_URL: string;
+  Bindings: {
+    DATABASE_URL: string;
 		JWT_SECRET: string;
 	},
   Variables :{
@@ -17,6 +17,27 @@ export const blogRouter = new Hono<{
   }
 }>();
 
+blogRouter.get("/bulk", async (c) => {
+  const prisma = new PrismaClient({
+    datasourceUrl: c.env.DATABASE_URL,
+  }).$extends(withAccelerate());
+
+  const blogs = await prisma.post.findMany({
+    select: {
+      title: true,
+      content: true,
+      id:true,
+      author: {
+        select: {
+          name:true
+        }
+      }
+    },
+  });
+  return c.json({
+    blogs,
+  });
+});
 
 
 blogRouter.use("/*", async (c, next) => {
@@ -88,27 +109,6 @@ blogRouter.put("/", async (c) => {
 	});
 });
 
-blogRouter.get("/bulk", async (c) => {
-	const prisma = new PrismaClient({
-		datasourceUrl: c.env.DATABASE_URL,
-	}).$extends(withAccelerate());
-
-	const blogs = await prisma.post.findMany({
-		select: {
-			title: true,
-			content: true,
-      id:true,
-      author: {
-        select: {
-          name:true
-        }
-      }
-		},
-	});
-	return c.json({
-		blogs,
-	});
-});
 
 blogRouter.get("/:id", async (c) => {
 	const prisma = new PrismaClient({

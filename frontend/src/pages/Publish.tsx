@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Appbar } from "../components/Appbar"
 import axios from "axios";
 import { BACKEND_URL } from "../config";
@@ -11,6 +11,14 @@ export const Publish = () => {
   const [content, setContent] = useState("")
   const [loading, setLoading] = useState(false)
   const navigate = useNavigate()
+
+  useEffect(()=>{
+    const user = localStorage.getItem("jwt")
+    if(!user){
+      navigate("/signin")
+    }
+  },[])
+
   async function publishBlog() {
     setLoading(true)
     const response = await axios.post(
@@ -35,7 +43,7 @@ export const Publish = () => {
   return (
 		<div>
 			<Appbar />
-			<div className="flex justify-center pt-12">
+			<div className="flex justify-center pt-8">
 				<div className="publish-page max-w-screen-lg w-full">
 					<input
 						onChange={(e) => setTitle(e.target.value)}
@@ -54,7 +62,7 @@ export const Publish = () => {
 					<button
 						onClick={publishBlog}
 						type="button"
-						className=" m-8 text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg  px-5 py-2"
+						className=" m-4 text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg  px-5 py-2"
 					>
 						{loading? "Publishing...": "Publish"}
 					</button>
