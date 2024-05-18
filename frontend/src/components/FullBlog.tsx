@@ -1,6 +1,5 @@
 import { Blog } from "../hooks";
 import { Appbar } from "./Appbar";
-import { Avatar,} from "./BlogCard";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.bubble.css";
 import { BlogMeta } from "./BlogMeta";
