@@ -1,8 +1,7 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link,} from "react-router-dom";
 
 
 export const Hero = () => {
-  const navigate = useNavigate()
   return (
 		<div className="h-[90vh] bg-gray-200 flex items-center justify-center">
 			<div className=" flex flex-col items-center text-center">
