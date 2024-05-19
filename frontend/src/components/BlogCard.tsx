@@ -4,6 +4,7 @@ import ReactQuill from "react-quill";
 import "react-quill/dist/quill.bubble.css";
 import { getPlainTextFromHTML } from "../utils/string";
 import { BlogMeta } from "./BlogMeta";
+import { MouseEventHandler } from "react";
 
 export interface BlogCardProps {
 	authorName: string;
@@ -46,9 +47,11 @@ export const BlogCard = ({
 
 export function Avatar({
 	name,
+  onClick,
 	size,
 }: {
 	name: string;
+  onClick?: MouseEventHandler<HTMLDivElement>
 	size?: "small" | "big";
 }) {
 	return (
@@ -56,6 +59,7 @@ export function Avatar({
 			className={`relative inline-flex items-center justify-center ${
 				size === "big" ? "w-8 h-8" : "w-6 h-6"
 			} overflow-hidden bg-gray-500 rounded-full `}
+      onClick={onClick}
 		>
 			<span className="font-light text-sm text-slate-100 ">
 				{name[0]}

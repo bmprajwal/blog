@@ -62,7 +62,7 @@ export const Publish = () => {
 					<button
 						onClick={publishBlog}
 						type="button"
-						className=" m-4 text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg  px-5 py-2"
+						className=" m-4 text-white bg-blue-600 hover:bg-blue-700 focus:outline-none  font-medium rounded-lg  px-5 py-2"
 					>
 						{loading? "Publishing...": "Publish"}
 					</button>
