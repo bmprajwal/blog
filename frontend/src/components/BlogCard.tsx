@@ -22,14 +22,19 @@ export const BlogCard = ({
 	publishedDate,
 }: BlogCardProps) => {
 	const quillContent =
-		getPlainTextFromHTML(content).split(" ").slice(0, 40).join(" ") + "...";
+		getPlainTextFromHTML(content).split(" ").slice(0, 25).join(" ") + "...";
 
 	return (
 		<Link to={`/blog/${id}`} className="blog-card">
-			<div className=" px-4 py-4 md:py-8 border my-5 rounded-lg border-gray-200 mx-2">
+			<div className=" px-4 py-2 md:py-8 border my-2 mx-3 md:my-5 rounded-lg border-gray-200 ">
 				<div>
-					<BlogMeta type="card" authorName={authorName} publishedDate={publishedDate} content={content}/>
-					<div className="text-2xl font-bold pt-2 title">
+					<BlogMeta
+						type="card"
+						authorName={authorName}
+						publishedDate={publishedDate}
+						content={content}
+					/>
+					<div className="text-xl md:text-2xl font-bold pt-2 title">
 						{title}
 					</div>
 					<div className="pt-2 text-slate-700">

@@ -6,6 +6,7 @@ import {
   createBlogInput,
 	updateBlogInput,
 } from "@bmprajwal/medium-common";
+import { getFormattedDate } from "../utils";
 
 export const blogRouter = new Hono<{
   Bindings: {
@@ -27,6 +28,7 @@ blogRouter.get("/bulk", async (c) => {
       title: true,
       content: true,
       id:true,
+      publishedDate: true,
       author: {
         select: {
           name:true
@@ -75,6 +77,7 @@ blogRouter.post("/", async (c) => {
 			title: body.title,
 			content: body.content,
 			authorId: authorId,
+      publishedDate: getFormattedDate()
 		},
 	});
 	return c.json({
@@ -102,6 +105,7 @@ blogRouter.put("/", async (c) => {
 		data: {
 			title: body.title,
 			content: body.content,
+      publishedDate: getFormattedDate()
 		},
 	});
 	return c.json({
@@ -124,6 +128,7 @@ blogRouter.get("/:id", async (c) => {
 				title: true,
 				content: true,
 				id: true,
+        publishedDate: true,
 				author: {
 					select: {
 						name: true,
