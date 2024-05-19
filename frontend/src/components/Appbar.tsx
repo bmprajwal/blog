@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import { Avatar } from "./BlogCard";
 import { FeatherIcon } from "./FeatherIcon";
-import { useState } from "react";
+import { MouseEventHandler, useState } from "react";
 
 export const Appbar = () => {
 	const isUserLoggedIn = localStorage.getItem("jwt");
@@ -62,19 +62,32 @@ const ProfileBox = () => {
   const [show, setShow] = useState(false)
   const logout = () => {
     localStorage.removeItem("jwt")
-    navigate("/")
+    navigate("/blogs")
   }
-  
+
 	return (
 		<div className=" cursor-pointer">
 			<Avatar size="big" name="Prajwal" onClick={() => setShow(!show)} />
 			{show && (
 				<div className="absolute right-4 top-14 border rounded-sm bg-white shadow-md py-1 px-2  w-52">
-					<div className=" mx-4 text-base text-gray-500 hover:text-gray-800" onClick={logout}>
-						Logout
-					</div>
+					<ProfileBoxItem itemName={"Logout"} onClick={logout}/>
 				</div>
 			)}
 		</div>
 	);
 };
+
+
+const ProfileBoxItem = ({itemName, onClick}: {
+  itemName: string;
+  onClick: MouseEventHandler<HTMLDivElement>
+}) => {
+  return (
+		<div
+			className=" mx-4 text-base text-gray-500 hover:text-gray-800"
+			onClick={onClick}
+		>
+			{itemName}
+		</div>
+  );
+}

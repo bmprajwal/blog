@@ -12,14 +12,14 @@ export const Blogs = () => {
 		<div>
 			<Appbar />
 			<div className="flex justify-center">
-				<div className="max-w-2xl">
+				<div className="max-w-3xl">
 					{blogs.map((blog) => (
 						<BlogCard
 							id={blog.id}
 							authorName={blog.author.name || "Anonymous"}
 							title={blog.title}
 							content={blog.content}
-							publishedDate={"Apr 14, 2024"}
+							publishedDate={blog.publishedDate}
 						/>
 					))}
 				</div>

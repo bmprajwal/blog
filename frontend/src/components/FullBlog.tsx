@@ -15,7 +15,7 @@ export const FullBlog = ({blog}: {blog: Blog}) => {
 					</div>
           <div className=" mt-5 px-6">
 
-					<BlogMeta authorName={blog.author.name} content={blog.content} publishedDate="18 May, 2024" />
+					<BlogMeta authorName={blog.author.name} content={blog.content} publishedDate={blog.publishedDate} />
           </div>
           <div className=" text-gray-700 pt-4">
 
