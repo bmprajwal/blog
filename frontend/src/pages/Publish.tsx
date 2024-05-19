@@ -19,7 +19,17 @@ export const Publish = () => {
     }
   },[])
 
+  const isContentValid = (content: string) => {
+		const trimmedContent = content.trim();
+		return (
+			trimmedContent &&
+			trimmedContent !== "<p><br></p>" &&
+			trimmedContent.length >= 30
+		);
+  };
+
   async function publishBlog() {
+    if (!title.trim() || !isContentValid(content)) return;
     setLoading(true)
     const response = await axios.post(
 		`${BACKEND_URL}/api/v1/blog`,
@@ -53,18 +63,23 @@ export const Publish = () => {
 						placeholder="Title"
 					></input>
 					<ReactQuill
-            className=" p-5"
+						className=" p-5"
 						theme="snow"
 						value={content}
 						onChange={setContent}
-            placeholder="Tell your story..."
+						placeholder="Tell your story..."
 					/>
 					<button
 						onClick={publishBlog}
 						type="button"
-						className=" m-4 text-white bg-blue-600 hover:bg-blue-700 focus:outline-none  font-medium rounded-lg  px-5 py-2"
+						className={`${
+							title && isContentValid(content)
+								? "bg-blue-600 hover:bg-blue-700"
+								: "bg-gray-400 cursor-not-allowed"
+						} m-4 text-white bg-blue-600  focus:outline-none  font-medium cursor-pointer rounded-lg  px-5 py-2`}
+						disabled={!title || !isContentValid(content) || loading}
 					>
-						{loading? "Publishing...": "Publish"}
+						{loading ? "Publishing..." : "Publish"}
 					</button>
 				</div>
 			</div>
