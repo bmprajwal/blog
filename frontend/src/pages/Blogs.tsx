@@ -1,31 +1,35 @@
+import { useRecoilValueLoadable } from "recoil";
 import { Appbar } from "../components/Appbar";
 import { BlogCard } from "../components/BlogCard";
-import { useBlogs } from "../hooks";
+import { Blog } from "../hooks";
+import { blogsAtom } from "../store/atoms/blogs";
 
 export const Blogs = () => {
-	const { loading, blogs } = useBlogs();
+	const blogs = useRecoilValueLoadable(blogsAtom);
 
-	if (loading) {
+	if (blogs.state === "loading") {
 		return <BlogsSkeleton />;
-	}
-	return (
-		<div>
-			<Appbar />
-			<div className="flex justify-center">
-				<div className="max-w-3xl">
-					{blogs.map((blog) => (
-						<BlogCard
-							id={blog.id}
-							authorName={blog.author.name || "Anonymous"}
-							title={blog.title}
-							content={blog.content}
-							publishedDate={blog.publishedDate}
-						/>
-					))}
+	} else if (blogs.state === "hasValue") {
+		return (
+			<div>
+				<Appbar />
+				<div className="flex justify-center">
+					<div className="max-w-3xl">
+						{blogs.contents.map((blog: Blog) => (
+							<BlogCard
+								key={blog.id}
+								id={blog.id}
+								authorName={blog.author.name || "Anonymous"}
+								title={blog.title}
+								content={blog.content}
+								publishedDate={blog.publishedDate}
+							/>
+						))}
+					</div>
 				</div>
 			</div>
-		</div>
-	);
+		);
+	}
 };
 
 function BlogsSkeleton() {

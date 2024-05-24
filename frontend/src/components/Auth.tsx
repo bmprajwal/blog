@@ -3,6 +3,8 @@ import axios from "axios";
 import { ChangeEvent, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { BACKEND_URL } from "../config";
+import { useSetRecoilState } from "recoil";
+import { userAtom } from "../store/atoms/user";
 
 export const Auth = ({ type }: { type: "signup" | "signin" }) => {
   const [loading, setLoading] = useState(false)
@@ -11,15 +13,19 @@ export const Auth = ({ type }: { type: "signup" | "signin" }) => {
 		email: "",
 		password: "",
 	});
-
+	const setUser = useSetRecoilState(userAtom)
   const navigate = useNavigate()
   async function sendRequest(){
     try {
       setLoading(true)
       const response = await axios.post(`${BACKEND_URL}/api/v1/user/${type === "signup"? "signup": "signin"}`, postInput)
-      const jwt = response.data;
-      localStorage.setItem("jwt", jwt.token)
-      navigate('/blogs')
+      const jwt = response.data.token;
+			const userData = response?.data?.user || {};
+      localStorage.setItem("jwt", jwt)
+			localStorage.setItem("user", JSON.stringify(userData))
+			setUser(userData)
+			
+      navigate("/blogs")
     } catch (error) {
       // alert user
     }
@@ -44,7 +50,7 @@ export const Auth = ({ type }: { type: "signup" | "signin" }) => {
 						</div>
 					</div>
 
-					<div className="pt-5">
+					<div className="p-5">
 						{type === "signup" ? (
 							<LabelledInput
 								label="Name"

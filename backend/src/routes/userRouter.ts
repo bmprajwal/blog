@@ -38,7 +38,15 @@ userRouter.post("/signup", async (c) => {
 		});
 
 		const token = await sign({ id: user.id }, c.env.JWT_SECRET);
-		return c.json({ token });
+		return c.json({
+			message: "Sign up successful!",
+			token,
+			user: {
+				id: user.id,
+				name: user.name,
+				email: user.email,
+			},
+		});
 	} catch (error) {
 		c.status(403);
 		return c.json({ error: "There was an error while signing up!" });
@@ -72,5 +80,13 @@ userRouter.post("/signin", async (c) => {
 
 	const token = await sign({ id: user.id }, c.env.JWT_SECRET);
 
-	return c.json({ token });
+	return c.json({
+		message: "Sign in successful!",
+		token,
+		user: {
+			id: user.id,
+			name: user.name,
+			email: user.email
+		}
+	});
 });
