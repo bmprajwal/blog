@@ -23,6 +23,7 @@ export const BlogCard = ({
 }: BlogCardProps) => {
 	const quillContent =
 		getPlainTextFromHTML(content).split(" ").slice(0, 25).join(" ") + "...";
+		
 
 	return (
 		<Link to={`/blog/${id}`} className="blog-card">

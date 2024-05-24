@@ -1,10 +1,20 @@
 import { Link, useNavigate } from "react-router-dom";
 import { Avatar } from "./BlogCard";
 import { FeatherIcon } from "./FeatherIcon";
-import { MouseEventHandler, useState } from "react";
+import { MouseEventHandler, useEffect, useState } from "react";
+import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
+import { userAtom, isUserLoggedInSelector } from "../store/atoms/user";
 
 export const Appbar = () => {
-	const isUserLoggedIn = localStorage.getItem("jwt");
+	const isUserLoggedIn = useRecoilValue(isUserLoggedInSelector)
+	const setUser = useSetRecoilState(userAtom)
+	useEffect(()=> { 
+		const userDetailsString = localStorage.getItem("user");
+		if (userDetailsString) {
+			const userDetails = JSON.parse(userDetailsString);
+			setUser(userDetails);
+		}
+	},[setUser])
 
 	return (
 		<div className="border-b flex justify-between items-center px-4 md:px-10 py-3">
@@ -58,16 +68,21 @@ export const Appbar = () => {
 };
 
 const ProfileBox = () => {
+	const [user, setUser] = useRecoilState(userAtom)
   const navigate = useNavigate()
   const [show, setShow] = useState(false)
   const logout = () => {
+		
+		
     localStorage.removeItem("jwt")
+		localStorage.removeItem("user")
+		setUser(null)
     navigate("/blogs")
   }
 
 	return (
 		<div className=" cursor-pointer">
-			<Avatar size="big" name="Prajwal" onClick={() => setShow(!show)} />
+			<Avatar size="big" name={user?.name || "Anonymous"} onClick={() => setShow(!show)} />
 			{show && (
 				<div className="absolute right-4 top-14 border rounded-sm bg-white shadow-md py-1 px-2  w-52">
 					<ProfileBoxItem itemName={"Logout"} onClick={logout}/>

@@ -5,12 +5,18 @@ import { BACKEND_URL } from "../config";
 import { useNavigate } from "react-router-dom";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import { userAtom } from "../store/atoms/user";
+import { blogsAtom } from "../store/atoms/blogs";
+import { Blog } from "../hooks";
 
 export const Publish = () => {
   const [title, setTitle] = useState("")
   const [content, setContent] = useState("")
   const [loading, setLoading] = useState(false)
   const navigate = useNavigate()
+	const currentUser = useRecoilValue(userAtom)
+	const setBlogs = useSetRecoilState(blogsAtom)
 
   useEffect(()=>{
     const user = localStorage.getItem("jwt")
@@ -46,6 +52,14 @@ export const Publish = () => {
 
     const data = response.data
     if(data){
+			setBlogs((oldBlogs:Blog[]) => [...oldBlogs, {
+				title,
+				content,
+				id: response.data.id,
+				author: {
+					name: currentUser?.name
+				}
+			}])
       navigate(`/blog/${data.id}`)
     }
     
