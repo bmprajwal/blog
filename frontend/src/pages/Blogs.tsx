@@ -6,7 +6,7 @@ import { blogsAtom } from "../store/atoms/blogs";
 
 export const Blogs = () => {
 	const blogs = useRecoilValueLoadable(blogsAtom);
-
+	
 	if (blogs.state === "loading") {
 		return <BlogsSkeleton />;
 	} else if (blogs.state === "hasValue") {
@@ -16,6 +16,7 @@ export const Blogs = () => {
 				<div className="flex justify-center">
 					<div className="max-w-3xl">
 						{blogs.contents.map((blog: Blog) => (
+							
 							<BlogCard
 								key={blog.id}
 								id={blog.id}
