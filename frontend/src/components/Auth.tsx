@@ -27,7 +27,8 @@ export const Auth = ({ type }: { type: "signup" | "signin" }) => {
 			
       navigate("/blogs")
     } catch (error) {
-      // alert user
+      setLoading(false)
+			alert("Failed to authenticate!")
     }
   }
 	return (

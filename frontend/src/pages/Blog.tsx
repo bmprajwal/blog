@@ -7,7 +7,7 @@ import { blogsAtomFamily } from "../store/atoms/blogs";
 
 export function Blog() {
 	const { id } = useParams();
-	const blog = useRecoilValueLoadable(blogsAtomFamily(id || ""));
+	const blogLoadable = useRecoilValueLoadable(blogsAtomFamily(id || ""));
 	const navigate = useNavigate();
 
 	useEffect(() => {
@@ -17,17 +17,19 @@ export function Blog() {
 		}
 	}, []);
 
-	if (blog.state === "loading") {
+	if (blogLoadable.state === "loading") {
 		return <BlogSkeleton />;
-	} else if (blog.state === "hasValue") {
+	} else if (blogLoadable.state === "hasValue") {
 		
 		return (
 			<div>
-				<FullBlog blog={blog.contents.blog} />
+				<FullBlog blog={blogLoadable.contents.blog} />
 			</div>
 		);
 	}
 }
+
+
 
 function BlogSkeleton() {
 	return (

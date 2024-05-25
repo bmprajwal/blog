@@ -110,6 +110,7 @@ blogRouter.put("/", async (c) => {
 	});
 	return c.json({
 		id: blog.id,
+		publishedDate: blog.publishedDate
 	});
 });
 
