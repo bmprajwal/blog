@@ -1,6 +1,6 @@
 ## Blogging
 
-![blogging app]([https://ibb.co/tm4pdL6](https://i.postimg.cc/Hk1gCK9d/Screenshot-2024-05-25-212309.png))
+![blogging app](https://i.postimg.cc/Hk1gCK9d/Screenshot-2024-05-25-212309.png)
 
 A React frontend and Cloudflare workers backend application offering features that replicate Medium, the popular blogging platform. 
 
