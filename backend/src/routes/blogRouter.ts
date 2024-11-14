@@ -35,6 +35,9 @@ blogRouter.get("/bulk", async (c) => {
         }
       }
     },
+		orderBy: {
+			publishedDate: "desc",
+		}
   });
   return c.json({
     blogs,
